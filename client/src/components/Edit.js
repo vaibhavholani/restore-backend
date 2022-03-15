@@ -12,6 +12,7 @@ export default function Edit() {
   const [data, setData] = useState([])
   const [select, setSelect] = useState(-1)
   const [switchMode, setSwitch] = useState(true)
+  const [dataLoadedFlag, setDataLoadedFlag] = useState(false)
 
   const updateCurrentMode = () => {
 
@@ -58,12 +59,15 @@ export default function Edit() {
 
   const handleUpdate = () => {
       update_data(currentMode, data[select]);
+      alert(`${currentMode} Updated`)
   }
 
   useEffect(()=> {
     setSelect(-1);
     setSwitch(true)
+    setDataLoadedFlag(false);
     currentMode === "team" ? get_all_team(setData) : get_all_project(setData)
+    setDataLoadedFlag(true);
   }, [currentMode])
 
   useEffect(()=> {
@@ -77,6 +81,9 @@ export default function Edit() {
     <div class="headingContainer">
         <h1> Edit {currentMode === "team"? "Team Member": "Project"}</h1>
         <button class="swapButton" onClick={()=>{updateCurrentMode()}}>Edit {currentMode !== "team"? "Team Member": "Project"}</button>
+    </div>
+    <div class="loadingContainer">
+        <p> STATUS: {!dataLoadedFlag ? <span style={{color: "red"}}>Loading Data</span>: <span style={{color: "green"}}>Data Loaded</span>}</p>
     </div>
     <div class="selectContainer">
         <p class="selectPara"> Select {currentMode === "team"? "Team Member": "Project"}:</p>

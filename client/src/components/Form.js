@@ -39,7 +39,7 @@ export default function Form() {
                   </div>
               )
           })}
-          <input type="submit"/>
+          <input type="submit" onClick={()=>{alert(`${currentMode} Added`)}}/>
       </div>
       </form>
 
