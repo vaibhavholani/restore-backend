@@ -3,7 +3,7 @@ const log = console.log;
 const path = require('path')
 
 const envHeader = "/api"
-const host = ""
+const host = "https://restore-backend.herokuapp.com/"
 
 // Express
 const express = require('express')
