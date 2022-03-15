@@ -1,0 +1,28 @@
+/* body {
+    width: 100vw;
+    height: 100
+} */
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.headingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.swapButton {
+    height: min-content;
+    padding: 3px;
+}
+
+.inputContainer div {
+    margin: 20px 0;
+}

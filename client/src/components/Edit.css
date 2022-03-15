@@ -1,0 +1,25 @@
+.EditContainer { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.selectContainer {
+    display: flex;
+}
+
+.select { 
+    padding: 5px;
+    margin: 5px 0;
+}
+
+.selectPara {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.variable-input {
+    width: 200px;
+    height: auto;
+}
