@@ -67,12 +67,12 @@ export default function Edit() {
     setSwitch(true)
     setDataLoadedFlag(false);
     currentMode === "team" ? get_all_team(setData) : get_all_project(setData)
-    setDataLoadedFlag(true);
   }, [currentMode])
 
   useEffect(()=> {
       if (data.length !== 0 && switchMode) {
           setSelect(0)
+          setDataLoadedFlag(true);
       }
   }, [data])
 
