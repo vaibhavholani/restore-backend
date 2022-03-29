@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {teamDataStructure, projectDataStructure} from './FormData.js'
+import Home from './Home.js'
 import {API_HOST} from '../api.js'
 import "./Form.css"
 
@@ -18,6 +19,7 @@ export default function Form() {
 
   return (
       <>
+      <Home/>
     <div class="headingContainer">
         <h1> Add {currentMode === "team"? "Team Member": "Project"}</h1>
         <button class="swapButton" onClick={()=>{updateCurrentMode()}}>Add {currentMode !== "team"? "Team Member": "Project"}</button>

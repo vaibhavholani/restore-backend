@@ -3,6 +3,7 @@ import {get_all_project} from '../api_calls/get_all_project'
 import {get_all_team} from '../api_calls/get_all_team'
 import delete_data from '../api_calls/delete'
 import update_data from '../api_calls/update'
+import Home from './Home.js'
 import {teamDataStructure} from './FormData.js'
 import './Edit.css'
 
@@ -77,6 +78,8 @@ export default function Edit() {
   }, [data])
 
   return (
+      <>
+      <Home/>
       <div class="EditContainer">
     <div class="headingContainer">
         <h1> Edit {currentMode === "team"? "Team Member": "Project"}</h1>
@@ -119,5 +122,6 @@ export default function Edit() {
       </div>: null}
   </div>
       </div>
+      </>
     );
 }
