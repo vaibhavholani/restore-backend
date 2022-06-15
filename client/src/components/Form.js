@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {teamDataStructure, projectDataStructure} from './FormData.js'
+import {teamDataStructure, projectDataStructure, researchDataStructure} from './FormData.js'
 import Home from './Home.js'
 import {API_HOST} from '../api.js'
 import "./Form.css"

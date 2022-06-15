@@ -13,3 +13,12 @@ export const projectDataStructure = [
     {label: "Project Short Name (for Navbar display):", type: "text", formName:"short_navbar_title"},
     {label: "Project Image", type: "file", formName: "img"}, 
 ]
+
+
+export const researchDataStructure = [
+    {label: "Research Title", type: "text", formName: "title"},
+    {label: "Research Description", type: "text", formName: "desc"},
+    {label: "Research Funder", type: "text", formName: "funder"},
+    {label: "Research Short Name (for Navbar display):", type: "text", formName:"short_navbar_title"},
+    {label: "Research Image", type: "file", formName: "img"}, 
+]

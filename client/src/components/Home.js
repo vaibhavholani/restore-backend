@@ -4,8 +4,8 @@ import './Home.css'
 
 export default function Home() {
 
-  const optionsList = [ {text: "Add Team Member/Projects", to: "/add"}, 
-                        {text: "Edit/Remove Team Member/Projects", to: "/delete"},]
+  const optionsList = [ {text: "Add Team Member/Projects/Published Research", to: "/add"}, 
+                        {text: "Edit/Remove Team Member/Projects/Published Research", to: "/delete"},]
   return (
     <>
     <div className="headerContainer">
