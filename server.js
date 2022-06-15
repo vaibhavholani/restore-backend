@@ -32,6 +32,8 @@ app.use(cors())
 // importing mongoose models
 const { Team } = require("./models/team")
 const { Project } = require("./models/project")
+const { Research } = require("./models/research")
+
 
 // to validate Object IDs
 const { Binary, ObjectId } = require('mongodb')
@@ -233,6 +235,106 @@ app.delete(`${envHeader}/project/`, async (req, res)=> {
 	await Project.deleteOne({"_id": ObjectId(project_id)})
 	res.sendStatus(200)
 })
+
+
+// ****************************** Routes for Research ****************************** //
+
+// Route for getting all project members
+app.get(`${envHeader}/research`, async(req, res) => {
+    
+    try {
+        const research_list = await Research.find()
+        res.send({ research_list })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for adding one project member
+app.post(`${envHeader}/research`, async (req, res) => {
+	// Add code here
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+    const buf = Buffer.from(req.files.img.data)
+    const mimetype = req.files.img.mimetype;
+	const finalReq = {...req.body, img: buf, img_mimetype: mimetype, html_id: `${req.body.short_navbar_title.split(" ")[0]}_id`}
+	try {
+		const research = new Research(finalReq)
+		const result = await research.save()
+        res.redirect(`${host}`)
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {
+			console.log(error)
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+
+// Route for getting all research member slugs and short name
+app.get(`${envHeader}/project/navbar`, async(req, res) => {
+    
+    try {
+        const research_list = await Research.find()
+        const filterProjects = research_list.map(research => {return ({title: research.short_navbar_title, id:research.html_id}) })
+        res.send({ projects: filterProjects })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for updating one research paper
+app.post(`${envHeader}/research/update`, async (req, res) => {
+	// Add code here
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	try {
+		
+		await Research.updateOne({"_id": ObjectId(req.body._id)}, req.body)
+        res.sendStatus(200)
+
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+// Route for deleting a research member
+app.delete(`${envHeader}/research/`, async (req, res)=> {
+	
+	const research_id = req.query.id
+	if (!ObjectId.isValid(research_id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;
+	}
+
+	await Research.deleteOne({"_id": ObjectId(research_id)})
+	res.sendStatus(200)
+})
+
+// ****************************** END OF Routes for Research ****************************** //
+
 
 /*** Webpage routes below **********************************/
 // Serve the build
