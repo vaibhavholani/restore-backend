@@ -6,7 +6,7 @@
     "scripts": {
         "setup": "npm install && cd client && npm install && cd ..",
         "build-run": "cd client && npm run build && cd .. && node server.js",
-        "start": "node server.js",
+        "start": "node --optimize_for_size --max_old_space_size=460 server.js",
         "heroku-postbuild": "cd client && npm install && npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
