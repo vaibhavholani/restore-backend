@@ -32,6 +32,7 @@ app.use(cors())
 // importing mongoose models
 const { Team } = require("./models/team")
 const { Project } = require("./models/project")
+const { Banner } = require("./models/banner")
 
 // to validate Object IDs
 const { Binary, ObjectId } = require('mongodb')
@@ -39,6 +40,31 @@ const { Binary, ObjectId } = require('mongodb')
 
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
 	return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
+}
+
+// Helper function to parse banner object
+const parseBannerBody = (req) => {
+	
+	var body = req.body
+
+	const allKeys = Object.keys(body);
+
+	// parsing the boolean values
+
+	// finding all avaiable params
+	const general = Object.assign({}, ...(allKeys.filter(key => key.startsWith("general"))).map((prop) => {return ({[prop.split("-")[1]]: body[prop]})}))
+	const heading = Object.assign({}, ...(allKeys.filter(key => key.startsWith("heading"))).map((prop) => {return ({[prop.split("-")[1]]: body[prop]})}))
+	const subHeading = Object.assign({}, ...(allKeys.filter(key => key.startsWith("subHeading"))).map((prop) => {return ({[prop.split("-")[1]]: body[prop]})}))
+	const button = Object.assign({}, ...(allKeys.filter(key => key.startsWith("button"))).map((prop) => {return ({[prop.split("-")[1]]: body[prop]})}))
+
+	// Creaing master banner object
+	const banner = {name: req.body.name, general, heading, subHeading, button}
+
+	// parsing the booleans
+	banner.subHeading.display = (banner.subHeading.display === "True");
+	banner.button.display = (banner.button.display === "True");
+	banner.heading.display = (banner.heading.display === "True");
+	return banner;
 }
 
 // Checking if mongo connection is ready
@@ -233,6 +259,51 @@ app.delete(`${envHeader}/project/`, async (req, res)=> {
 	await Project.deleteOne({"_id": ObjectId(project_id)})
 	res.sendStatus(200)
 })
+
+// Route for adding a banner
+app.post(`${envHeader}/banner`, async (req, res) => {
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	const bannerData = parseBannerBody(req)
+
+    const buf = Buffer.from(req.files.img.data)
+    const mimetype = req.files.img.mimetype;
+	const finalReq = {...bannerData, img: buf, img_mimetype: mimetype}
+
+	try {
+		const banner = new Banner(finalReq)
+		const result = await banner.save()
+        res.redirect(`${host}`)
+
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {	
+			console.log(error)
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+// Route for getting all Banners
+app.get(`${envHeader}/banner`, async(req, res) => {
+    
+    try {
+        const banners = await Banner.find()
+        res.send({ banners })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
 
 /*** Webpage routes below **********************************/
 // Serve the build

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {teamDataStructure, projectDataStructure} from './FormData.js'
+import {teamDataStructure, projectDataStructure, bannerDataStructure} from './FormData.js'
 import Home from './Home.js'
 import {API_HOST} from '../api.js'
 import "./Form.css"
@@ -21,13 +21,18 @@ export default function Form() {
       <>
       <Home/>
     <div class="headingContainer">
-        <h1> Add {currentMode === "team"? "Team Member": "Project"}</h1>
-        <button class="swapButton" onClick={()=>{updateCurrentMode()}}>Add {currentMode !== "team"? "Team Member": "Project"}</button>
+        <h1> Add {currentMode === "team"? "Team Member": (currentMode=== "project" ? "Project" : "Banner")}</h1>
+        <select value={currentMode} onChange={(e)=>{setCurrentMode(e.target.value)}}>
+            <option value="team"> Add Team Member</option>
+            <option value="project"> Add Project</option>
+            <option value="banner">Add Banner</option>
+        </select>
+        {/* <button class="swapButton" onClick={()=>{updateCurrentMode()}}>Add {currentMode !== "team"? "Team Member": "Project"}</button> */}
     </div>
   <div class="formContainer">
       <form id="form" action={`${API_HOST}/api/${currentMode}`} method="POST" enctype="multipart/form-data">
       <div class="inputContainer">
-          {(currentMode === 'team'? teamDataStructure : projectDataStructure).map(data => {
+          {(currentMode === 'team'? teamDataStructure : (currentMode=== "project" ? projectDataStructure : bannerDataStructure)).map(data => {
               return (
                   <div>
                       <label> {data.label}: </label>
