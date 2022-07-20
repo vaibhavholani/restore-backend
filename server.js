@@ -98,6 +98,37 @@ app.get(`${envHeader}/team`, async(req, res) => {
 	}
 })
 
+// Route for getting all team members without images
+app.get(`${envHeader}/team_no_image`, async(req, res) => {
+    
+    try {
+        const teams = await Team.find().select(["-img"])
+		teams.sort((a,b) => {
+			const option_list = ["lead", "colab_sci", "volunteers", "student"]
+			return option_list.indexOf(a.type) < option_list.indexOf(b.type) ? -1:1
+		})
+        res.send({ teams })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for getting image of a specific team member using it's object id
+app.get(`${envHeader}/team_id_image/:id`, async(req, res) => {
+    
+	const objID = req.params.id;
+    try {
+        const teams = await Team.findById(objID)
+        res.send({ teams })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
 // Route for adding one team member
 app.post(`${envHeader}/team`, async (req, res) => {
 	// Add code here
