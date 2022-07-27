@@ -209,7 +209,7 @@ app.get(`${envHeader}/project`, async(req, res) => {
 })
 
 // Route for adding one project member
-app.post(`${envHeader}/project`, trafficInspector, async (req, res) => {
+app.post(`${envHeader}/project`, async (req, res) => {
 	// Add code here
 
 	if (mongoose.connection.readyState != 1) {
@@ -238,7 +238,7 @@ app.post(`${envHeader}/project`, trafficInspector, async (req, res) => {
 
 
 // Route for getting all project member slugs and short name
-app.get(`${envHeader}/project/navbar`, async(req, res) => {
+app.get(`${envHeader}/project/navbar`,trafficInspector, async(req, res) => {
     
     try {
         const projects = await Project.find()

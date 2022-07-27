@@ -12,6 +12,7 @@ export default function Home() {
     <div className="headerContainer">
         <h1 className="heading">Restore Lab Data Updates</h1>
         <h3>Please select one of the following options:</h3>
+        <h1> Daily Lab Website Visits: {}</h1>
         {optionsList.map(option => {
             return (
                 <Link to={option.to}>{option.text}</Link>
