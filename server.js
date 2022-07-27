@@ -33,13 +33,37 @@ app.use(cors())
 const { Team } = require("./models/team")
 const { Project } = require("./models/project")
 const { Banner } = require("./models/banner")
+const { Traffic } = require("./models/traffic")
 
 // to validate Object IDs
-const { Binary, ObjectId } = require('mongodb')
+const { Binary, ObjectId} = require('mongodb')
 
 
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
 	return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
+}
+
+// middleware for inspecting traffic
+const trafficInspector = async(req, res, next) => {
+    // check mongoose connection established.
+
+	try {
+		var today = new Date();
+		var dd = String(today.getDate()).padStart(2, '0');
+		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+		var yyyy = today.getFullYear();
+		today = mm + '/' + dd + '/' + yyyy;
+		
+		const ip = req.hasOwnProperty('ip') ? req.ip : "unknown_ip"
+
+		const traffic = new Traffic({ip_address: ip, date: today})
+		const result = await traffic.save()
+	}
+	catch(err) {
+		;
+	}
+	
+    next();
 }
 
 // Helper function to parse banner object
@@ -65,18 +89,6 @@ const parseBannerBody = (req) => {
 	banner.button.display = (banner.button.display === "True");
 	banner.heading.display = (banner.heading.display === "True");
 	return banner;
-}
-
-// Checking if mongo connection is ready
-const mongoChecker = (req, res, next) => {
-    // check mongoose connection established.
-    if (mongoose.connection.readyState != 1) {
-        log('Issue with mongoose connection')
-        res.status(500).send('Internal server error')
-        return;
-    } else {
-        next()  
-    }   
 }
 
 /*** API routes below **********************************/
@@ -197,7 +209,7 @@ app.get(`${envHeader}/project`, async(req, res) => {
 })
 
 // Route for adding one project member
-app.post(`${envHeader}/project`, async (req, res) => {
+app.post(`${envHeader}/project`, trafficInspector, async (req, res) => {
 	// Add code here
 
 	if (mongoose.connection.readyState != 1) {
