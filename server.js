@@ -54,7 +54,7 @@ const trafficInspector = async(req, res, next) => {
 		var yyyy = today.getFullYear();
 		today = mm + '/' + dd + '/' + yyyy;
 		
-		const ip = req.hasOwnProperty('ip') ? req.ip : "unknown_ip"
+		var ip = req.headers['x-forwaded-for'] || req.connection.remoteAddress || "unknow_ip"
 
 		const traffic = new Traffic({ip_address: ip, date: today})
 		const result = await traffic.save()
@@ -340,6 +340,20 @@ app.get(`${envHeader}/banner`, async(req, res) => {
     try {
         const banners = await Banner.find()
         res.send({ banners })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for getting traffic by date
+app.get(`${envHeader}/traffic/:date`, async(req, res) => {
+    
+	const date = req.params.date;
+    try {
+        const teams = await Team.find({"date": date}).length
+        res.send({ length: teams })
     }
     catch(error) {
 		log(error)
