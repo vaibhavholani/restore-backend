@@ -35,7 +35,7 @@ const { Project } = require("./models/project")
 const { Banner } = require("./models/banner")
 const { Traffic } = require("./models/traffic")
 
-// Force creating the index
+// Force creating the index //
 Traffic.ensureIndexes()
 
 // to validate Object IDs
