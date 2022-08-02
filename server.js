@@ -48,13 +48,14 @@ const trafficInspector = async(req, res, next) => {
     // check mongoose connection established.
 
 	try {
+		const cookie = req.params.cookie
 		var today = new Date();
 		var dd = String(today.getDate()).padStart(2, '0');
 		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 		var yyyy = today.getFullYear();
 		today = mm + '/' + dd + '/' + yyyy;
 		
-		var ip = req.headers['x-forwaded-for'] || req.connection.remoteAddress || "unknow_ip"
+		var ip = cookie
 
 		const traffic = new Traffic({ip_address: ip, date: today})
 		const result = await traffic.save()
@@ -238,7 +239,7 @@ app.post(`${envHeader}/project`, async (req, res) => {
 
 
 // Route for getting all project member slugs and short name
-app.get(`${envHeader}/project/navbar`,trafficInspector, async(req, res) => {
+app.get(`${envHeader}/project/navbar/:cookie`, trafficInspector, async(req, res) => {
     
     try {
         const projects = await Project.find()
