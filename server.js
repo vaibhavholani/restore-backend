@@ -403,19 +403,19 @@ app.get(`${envHeader}/traffic/:date`, async(req, res) => {
 
 /*** Webpage routes below **********************************/
 // Serve the build
-// app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
-// app.get("*", (req, res) => {
-//     // check for page routes that we expect in the frontend to provide correct status code.
-//     const goodPageRoutes = ["/", "/add", "/delete"];
-//     if (!goodPageRoutes.includes(req.url)) {
-//         // if url not in expected page routes, set status to 404.
-//         res.status(404);
-//     }
+app.get("*", (req, res) => {
+    // check for page routes that we expect in the frontend to provide correct status code.
+    const goodPageRoutes = ["/", "/add", "/delete"];
+    if (!goodPageRoutes.includes(req.url)) {
+        // if url not in expected page routes, set status to 404.
+        res.status(404);
+    }
 
-//     // send index.html
-//     res.sendFile(path.join(__dirname, "/client/build/index.html"));
-// });
+    // send index.html
+    res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
 
 // Express server listening...
 const port = process.env.PORT || 5000;
