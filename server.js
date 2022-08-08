@@ -36,7 +36,7 @@ const { Banner } = require("./models/banner")
 const { Traffic } = require("./models/traffic")
 
 // Force creating the index //
-Traffic.ensureIndexes()
+// Traffic.ensureIndexes()
 
 // to validate Object IDs
 const { Binary, ObjectId} = require('mongodb')
@@ -87,11 +87,6 @@ const parseBannerBody = (req) => {
 
 	// Creaing master banner object
 	const banner = {name: req.body.name, general, heading, subHeading, button}
-
-	// parsing the booleans
-	banner.subHeading.display = (banner.subHeading.display === "True");
-	banner.button.display = (banner.button.display === "True");
-	banner.heading.display = (banner.heading.display === "True");
 	return banner;
 }
 
@@ -351,13 +346,52 @@ app.get(`${envHeader}/banner`, async(req, res) => {
 	}
 })
 
+// Route for updating banner
+app.post(`${envHeader}/banner/update`, async (req, res) => {
+	// Add code here
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+	const bannerData = parseBannerBody(req)
+
+	try {
+		await Banner.updateOne({"_id": ObjectId(req.body._id)}, {"_id": req.body._id, ...bannerData})
+        res.sendStatus(200)
+
+	} catch(error) {
+		console.log(error)
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+// Route for deleting a banner
+app.delete(`${envHeader}/banner/`, async (req, res)=> {
+	
+	const banner_id = req.query.id
+	if (!ObjectId.isValid(banner_id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;
+	}
+
+	await Banner.deleteOne({"_id": ObjectId(banner_id)})
+	res.sendStatus(200)
+})
+
 // Route for getting traffic by date
 app.get(`${envHeader}/traffic/:date`, async(req, res) => {
     
-	const date = req.params.date;
+	const date = (req.params.date).replaceAll("-", "/");
     try {
-        const teams = await Team.find({"date": date}).length
-        res.send({ length: teams })
+        const teams = await Traffic.find({"date": date})
+        res.send({ length: teams.length })
     }
     catch(error) {
 		log(error)
@@ -366,21 +400,22 @@ app.get(`${envHeader}/traffic/:date`, async(req, res) => {
 })
 
 
+
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.get("*", (req, res) => {
-    // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/add", "/delete"];
-    if (!goodPageRoutes.includes(req.url)) {
-        // if url not in expected page routes, set status to 404.
-        res.status(404);
-    }
+// app.get("*", (req, res) => {
+//     // check for page routes that we expect in the frontend to provide correct status code.
+//     const goodPageRoutes = ["/", "/add", "/delete"];
+//     if (!goodPageRoutes.includes(req.url)) {
+//         // if url not in expected page routes, set status to 404.
+//         res.status(404);
+//     }
 
-    // send index.html
-    res.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
+//     // send index.html
+//     res.sendFile(path.join(__dirname, "/client/build/index.html"));
+// });
 
 // Express server listening...
 const port = process.env.PORT || 5000;

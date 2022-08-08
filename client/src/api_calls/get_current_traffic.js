@@ -9,7 +9,7 @@ const processTeams = (teams) => {
     return processedTeam
 }
 
-export const get_all_team = (setTeams) => {
+export const get_current_traffic = (setTraffic) => {
     
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -17,7 +17,7 @@ export const get_all_team = (setTeams) => {
     var yyyy = today.getFullYear();
     today = mm + '-' + dd + '-' + yyyy;
     
-    const url = `${API_HOST}/api/${today}`
+    const url = `${API_HOST}/api/traffic/${today}`
 
-    fetch(url).then(response => response.json()).then(json => setTeams(processTeams(json.teams)))
+    fetch(url).then(response => response.json()).then(json => setTraffic(json.length))
 }

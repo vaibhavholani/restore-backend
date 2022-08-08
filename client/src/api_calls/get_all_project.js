@@ -30,9 +30,11 @@ const processNavProjects = (projects) => {
     return processedProjects
 }
 
-export const getNavProjectItems = (setProjects) => {
+export const getNavProjectItems = (setProjects, setMode) => {
     
     const url = `${API_HOST}/api/project/navbar`
-
-    fetch(url).then(response => response.json()).then(json => setProjects(processNavProjects(json.projects)))
+    fetch(url).then(response => response.json()).then(json => {
+        setMode("project")
+        setProjects(processNavProjects(json.projects));
+    })
 }

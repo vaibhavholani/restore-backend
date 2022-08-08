@@ -33,6 +33,15 @@ export default function Form() {
       <form id="form" action={`${API_HOST}/api/${currentMode}`} method="POST" enctype="multipart/form-data">
       <div class="inputContainer">
           {(currentMode === 'team'? teamDataStructure : (currentMode=== "project" ? projectDataStructure : bannerDataStructure)).map(data => {
+              
+              if (data.type === "Heading/Separator") {
+                return (
+                    <div>
+                        <h4>{data.label}</h4>
+                    </div>
+                )
+              }
+              
               return (
                   <div>
                       <label> {data.label}: </label>

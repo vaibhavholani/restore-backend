@@ -9,7 +9,6 @@ const bannerTextSchema = new mongoose.Schema({
     text: {type: String, required: true},
     color: {type: String, required: true},
     fontSize: {type: String, required: true},
-    display: {type: Boolean, required: true},
 });
 
 const bannerButtonSchema = new mongoose.Schema({
@@ -17,7 +16,6 @@ const bannerButtonSchema = new mongoose.Schema({
     color: {type: String, required: true},
     background: {type: String, required: true},
     redirect: {type: String, required: true},
-    display: {type: Boolean, required: true},
 });
 
 const BannerSchema = new mongoose.Schema({

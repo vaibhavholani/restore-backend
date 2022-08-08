@@ -9,7 +9,13 @@ const processTeams = (teams) => {
     return processedTeam
 }
 
-export const get_all_team = (setTeams) => {
+export const get_all_team = (setTeams, setMode) => {
     const url = `${API_HOST}/api/team`
-    fetch(url).then(response => response.json()).then(json => setTeams(processTeams(json.teams)))
+    fetch(url).then(response => response.json()).then(json => 
+        {
+            setMode("team")
+            setTeams(processTeams(json.teams))}
+        
+        )
+    
 }
