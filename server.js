@@ -216,10 +216,19 @@ app.post(`${envHeader}/project`, async (req, res) => {
 		res.status(500).send('Internal server error')
 		return;
 	}
+	
+    const imgbuf = Buffer.from(req.files.img.data)
+    const img_mimetype = req.files.img.mimetype;
+	const filebuf = req.files.buttonDownload ? Buffer.from(req.files.buttonDownload.data) : null
+	const file_mimetype = req.files.buttonDownload ? req.files.buttonDownload.mimetype : null
+	const finalReq = {...req.body, img: imgbuf, img_mimetype: img_mimetype, html_id: `${req.body.short_navbar_title.split(" ")[0]}_id`}
+	if (filebuf) {
+		finalReq["buttonDownload"] = filebuf; 
+		finalReq["download_mimetype"]=file_mimetype;
+		console.log("pdf file added")
+		console.log(file_mimetype)
+	}
 
-    const buf = Buffer.from(req.files.img.data)
-    const mimetype = req.files.img.mimetype;
-	const finalReq = {...req.body, img: buf, img_mimetype: mimetype, html_id: `${req.body.short_navbar_title.split(" ")[0]}_id`}
 	try {
 		const project = new Project(finalReq)
 		const result = await project.save()
@@ -272,6 +281,20 @@ app.post(`${envHeader}/project/update`, async (req, res) => {
 		else {
 			res.status(400).send("Bad Request")
 		}
+	}
+})
+
+// Route for getting pdf file given a specific objectID
+app.get(`${envHeader}/project_pdf/:id`, async(req, res) => {
+    
+	const objID = req.params.id;
+    try {
+        const projects = await Project.findById(objID).select(["-img"])
+        res.send({ projects })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
 	}
 })
 

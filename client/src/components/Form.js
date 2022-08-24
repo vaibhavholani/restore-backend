@@ -46,8 +46,8 @@ export default function Form() {
                   <div>
                       <label> {data.label}: </label>
                       {data.type !== "select" ? 
-                      <input name={data.formName} type={data.type} required/> :
-                      <select name={data.formName} form="form" required>
+                      <input name={data.formName} type={data.type} required={data.required}/> :
+                      <select name={data.formName} form="form" required={data.required}>
                           {data.option_list.map(x => {
                               return (<option value={x.formName}>{x.value}</option>)
                           })}

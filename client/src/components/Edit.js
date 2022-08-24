@@ -46,7 +46,6 @@ export default function Edit() {
   }
 
   const handleDelete = () => {
-    setSwitch(true)
     delete_data(currentMode, data[select]._id)
     setData(old => {return (old.filter((item, index) => {return (index !== select)}))})
   }
@@ -79,6 +78,16 @@ export default function Edit() {
           setCurrDataSturcture(currentMode === "team" ? teamDataStructure : (currentMode === "project" ? projectDataStructure : bannerDataStructure));
           setSwitch(false)
       }
+
+      // Removing invalid index cases
+      if (select >= data.length) {
+        if (data.length === 0) {
+            setSelect(-1)
+        }
+        else {
+            setSelect(0)
+        }
+      }
   }, [data])
 
   return (
@@ -107,24 +116,7 @@ export default function Edit() {
         </select>
     </div>
   <div class="formContainer">
-      {(select !== -1 && data.length>0) ? <div class="inputContainer">
-          {/* {Object.keys(data[select]).map(option => {
-              const ignore_list = ["html_id", "_id", "__v"]
-              if (!(ignore_list.includes(option) && option.endsWith("_id"))) {
-                  return (
-                      <div>
-                          <label> {option}: </label>
-                          {option !== "type" ? 
-                          <input class="variable-input" name={option} type= "text" value={data[select][option]} onChange={(e) => {handleInputChange(option, e)}}/> :
-                          <select name="type" value={data[select]["type"]} onChange={(e)=> {handleInputChange("type", e)}}>
-                          {teamDataStructure[4].option_list.map(x => {
-                              return (<option value={x.formName}>{x.value}</option>)
-                          })}
-                         </select>}
-                      </div>
-                  )
-              }
-          })} */}
+      {(select !== -1 && data.length>0 && data[select]) ? <div class="inputContainer">
           {Object.keys(data[select]).map(option => {
               if (option === "type") {
                 return (

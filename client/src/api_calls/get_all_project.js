@@ -2,7 +2,7 @@ import {API_HOST} from '../api.js'
 
 const processProjects = (projects) => {
     const processedProject = projects.map(member => {
-        const {img, img_mimetype, ...r_obj} = member
+        const {img, img_mimetype, buttonDownload, download_mimetype, ...r_obj} = member
         return r_obj
     })
 
