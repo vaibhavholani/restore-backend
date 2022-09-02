@@ -6,6 +6,19 @@ export const teamDataStructure = [
     {label: "Member Category", type:"select", formName: "category", option_list: [{value: "Team Lead", formName: "lead"}, {value:"Collaborating Scientists", formName: "colab_sci"}, {value:"Volunteers", formName: "volunteers"}, {value:"Trainees/Work-Study Students/ Co-op Students", formName: "student",required: true}]}
 ]
 
+export const alumniDataStructure = [
+    {label: "Alumni Title", type: "text", formName: "title", required: true},
+    {label: "Alumni Name", type: "text", formName: "name", required: true},
+    {label: "Alumni Description", type: "text", formName: "description", required: true},
+    {label: "Duration", type: "text", formName: "duration", required: true},
+    {label: "Proile Image", type: "file", formName: "img", required: true},
+    {label: "Linkedin", type: "text", formName: "linkedin", required: false},
+    {label: "Email", type: "text", formName: "email", required: false},
+    {label: "Website", type: "text", formName: "website", required: false},
+    {label: "Alumni Category", type:"select", formName: "category", option_list: [{value: "Team Lead", formName: "lead"}, {value:"Collaborating Scientists", formName: "colab_sci"}, {value:"Volunteers", formName: "volunteers"}, {value:"Trainees/Work-Study Students/ Co-op Students", formName: "student",required: true}]}
+]
+
+
 export const projectDataStructure = [
     {label: "Project Title", type: "text", formName: "title", required: true},
     {label: "Project Description", type: "text", formName: "desc", required: true},

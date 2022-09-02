@@ -34,6 +34,7 @@ const { Team } = require("./models/team")
 const { Project } = require("./models/project")
 const { Banner } = require("./models/banner")
 const { Traffic } = require("./models/traffic")
+const { Alumni } = require("./models/alumni")
 
 // Force creating the index //
 // Traffic.ensureIndexes()
@@ -420,6 +421,138 @@ app.get(`${envHeader}/traffic/:date`, async(req, res) => {
 		log(error)
 		res.status(500).send("Internal Server Error")
 	}
+})
+/*** All Alumni Routes below **********************************/
+
+// Route for getting all alumni members
+app.get(`${envHeader}/alumni`, async(req, res) => {
+    
+    try {
+        const alumnis = await Alumni.find()
+		alumnis.sort((a,b) => {
+			const option_list = ["lead", "colab_sci", "volunteers", "student"]
+			return option_list.indexOf(a.type) < option_list.indexOf(b.type) ? -1:1
+		})
+        res.send({ alumnis })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for getting all alumni members without images
+app.get(`${envHeader}/alumni_no_image`, async(req, res) => {
+    
+    try {
+        const alumnis = await Alumni.find().select(["-img"])
+		alumnis.sort((a,b) => {
+			const option_list = ["lead", "colab_sci", "volunteers", "student"]
+			return option_list.indexOf(a.type) < option_list.indexOf(b.type) ? -1:1
+		})
+        res.send({ alumnis })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for getting image of a specific alumni member using it's object id
+app.get(`${envHeader}/alumni_id_image/:id`, async(req, res) => {
+    
+	const objID = req.params.id;
+    try {
+        const alumnis = await Alumni.findById(objID)
+        res.send({ alumnis })
+    }
+    catch(error) {
+		log(error)
+		res.status(500).send("Internal Server Error")
+	}
+})
+
+// Route for adding one alumni member
+app.post(`${envHeader}/alumni`, async (req, res) => {
+	// Add code here
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+    // Removing linked, website and email incase they are all empty
+    Object.keys(req.body).forEach(key => {
+        if (req.body[key] === '') {
+          delete req.body[key];
+        }
+      });
+
+
+    const buf = Buffer.from(req.files.img.data)
+    const mimetype = req.files.img.mimetype;
+	const finalReq = {...req.body, type: req.body.category, img: buf, img_mimetype: mimetype, html_id: `${req.body.name.split(' ')[0]}_id`}
+
+	try {
+		const alumni = new Alumni(finalReq)
+		const result = await alumni.save()
+        res.redirect(`${host}`)
+
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+// Route for updating one alumni member
+app.post(`${envHeader}/alumni/update`, async (req, res) => {
+	// Add code here
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	}
+
+	try {
+
+        // Removing linked, website and email incase they are all empty
+        Object.keys(req.body).forEach(key => {
+            if (req.body[key] === '') {
+            delete req.body[key];
+            }
+        });
+		
+		await Alumni.updateOne({"_id": ObjectId(req.body._id)}, req.body)
+        res.sendStatus(200)
+
+	} catch(error) {
+		if (isMongoError(error)) {
+			res.status(500).send("Internal Server Error")
+		}
+		else {
+			res.status(400).send("Bad Request")
+		}
+	}
+})
+
+
+// Route for deleting a alumni member
+app.delete(`${envHeader}/alumni/`, async (req, res)=> {
+	
+	const alumni_id = req.query.id
+	if (!ObjectId.isValid(alumni_id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;
+	}
+	await Alumni.deleteOne({"_id": ObjectId(alumni_id)})
+	res.redirect(`${host}`)
+	
 })
 
 
