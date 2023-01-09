@@ -1,0 +1,41 @@
+"Question","No","Not Required","Required 1 to 5 times per day","Required 6 to 10 times per day","Required half of a day","Required less than half of a day","Required more than 10 times a day","Required more than half of a day","Yes","NA_"
+"Adverse lighting conditions","12"," "," "," "," "," "," "," "," ",1
+"Bending"," ","10"," "," "," ","2"," "," "," ",1
+"By hand"," ","5"," "," ","1","6"," "," "," ",1
+"Carrying less than 5 kg"," ","8","4"," "," "," "," "," "," ",1
+"Carrying more than 5 kg"," ","12"," "," "," "," "," "," "," ",1
+"Congested/cluttered working areas","11"," "," "," "," "," "," "," ","1",1
+"Exposure to chemicals","12"," "," "," "," "," "," "," "," ",1
+"Exposure to excessive dust","12"," "," "," "," "," "," "," "," ",1
+"Exposure to excessive noise /auditory distractions","8"," "," "," "," "," "," "," ","4",1
+"Exposure to extreme temperatures","12"," "," "," "," "," "," "," "," ",1
+"Exposure to infectious agents/disease","11"," "," "," "," "," "," "," ","1",1
+"Exposure to insects or animals (e.g. bed bugs, cats)","12"," "," "," "," "," "," "," "," ",1
+"Exposure to strong odors","7"," "," "," "," "," "," "," ","5",1
+"Finger dexterity"," ","5","6","1"," "," "," "," "," ",1
+"Grasping"," ","7","4","1"," "," "," "," "," ",1
+"Keyboarding on computer or tablet"," "," "," "," ","4","5"," ","3"," ",1
+"Keyboarding on phone"," ","12"," "," "," "," "," "," "," ",1
+"Kneeling/squatting"," ","10"," "," "," ","2"," "," "," ",1
+"Lifting less than 5 kg"," ","9","3"," "," "," "," "," "," ",1
+"Lifting more than 5 kg"," ","11","1"," "," "," "," "," "," ",1
+"Other climbing"," ","12"," "," "," "," "," "," "," ",1
+"Pinching"," ","7","4","1"," "," "," "," "," ",1
+"Pulling less than 5 kg"," ","10","1"," "," "," ","1"," "," ",1
+"Pulling more than 5 kg"," ","12"," "," "," "," "," "," "," ",1
+"Pushing less than 5 kg"," ","10","1"," "," "," ","1"," "," ",1
+"Pushing more than 5 kg"," ","12"," "," "," "," "," "," "," ",1
+"Reaching"," ","7","4","1"," "," "," "," "," ",1
+"Sitting (Continuous)"," ","4"," "," ","3","4"," ","1"," ",1
+"Sitting (Intermittent)"," "," "," "," ","4","6"," ","2"," ",1
+"Stair climbing"," ","3"," "," "," ","9"," "," "," ",1
+"Standing (Continuous)"," ","6"," "," "," ","6"," "," "," ",1
+"Standing (Intermittent)"," "," "," "," ","2","8"," ","2"," ",1
+"Travel via car required","9"," "," "," "," "," "," "," ","3",1
+"Travel via public transportation required","7"," "," "," "," "," "," "," ","5",1
+"Twisting /awkward posture"," ","11"," "," "," ","1"," "," "," ",1
+"Use of sharp tools","10"," "," "," "," "," "," "," ","2",1
+"Walking"," "," "," "," ","1","8"," ","3"," ",1
+"Work only indoors","5"," "," "," "," "," "," "," ","7",1
+"Work outdoors > 1 hour","7"," "," "," "," "," "," "," ","5",1
+"Total","135","183","28","4","15","57","2","11","33",39
