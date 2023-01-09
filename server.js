@@ -561,6 +561,8 @@ app.delete(`${envHeader}/alumni/`, async (req, res)=> {
 // Serve the build
 app.use(express.static(path.join(__dirname, "/client/build")));
 
+app.use('/pdmdata', express.static(path.join(__dirname, 'datasets')))
+
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
     const goodPageRoutes = ["/", "/add", "/delete"];
