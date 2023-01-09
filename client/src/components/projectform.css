@@ -1,0 +1,164 @@
+.mainheading {
+    text-align: center;
+    /* background-color: #c491dc; */
+    color: rgb(53, 29, 206);
+    }
+    
+    .inputdiv {
+      margin-left: 37%;
+      margin-right: auto;
+      margin-top: 2.5%;
+      text-align: justify;
+    }
+    
+    label {
+      margin: 1%;
+    }
+    
+    .submit {
+      margin-top: 2.5%;
+      margin-left: 48%;
+    }
+    
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+    
+    *, *:before, *:after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .headings {
+    
+        font-size: 70px;
+        font-weight: 600;
+        background-image: conic-gradient(#553c9a, #ee2b3b, #001ecb, #553c9a);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        text-align: center;
+    
+    
+    }
+    
+    .mainheading {
+    
+      font-size: 300%;
+      font-weight: 100%;
+      background-image: conic-gradient(#553c9a, #ee2b3b, #001ecb, #553c9a);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-align: center;
+    
+    
+    }
+    .output1 {
+      /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+      background-color: aqua;
+      background-size: 1000% 1000%;
+      animation: gradient 15s ease infinite;
+      height: 100%;
+      padding-bottom: 10%;
+    }
+    @keyframes gradient {
+      0% {
+      background-position: 0% 50%;
+    }
+    
+      50% {
+      background-position: 100% 50%;
+      }
+      100% {
+      background-position: 0% 50%;
+      }
+      }
+    table {
+      background: #011439;
+      border-radius: 0.25em;
+      border-collapse: collapse;
+      margin: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 3%;
+    }
+    th {
+      border-bottom: 1px solid #364043;
+      color: #E2B842;
+      font-size: 0.85em;
+      font-weight: 600;
+      padding: 0.5em 1em;
+      text-align: left;
+    }
+    td {
+      color: #fff;
+      font-weight: 400;
+      padding: 0.65em 1em;
+    }
+    .disabled td {
+      color: #4F5F64;
+    }
+    tbody tr {
+      transition: background 0.25s ease;
+    }
+    tbody tr:hover {
+      background: #014055;
+    }
+    .App1 {
+      background-color: aqua;
+      height: 100%;
+      padding-bottom: 22%;
+    }
+    /* .inputdiv {
+      overflow:hidden;
+      width:350px;
+      margin-left:35px;
+      /* background: url("images/dropdown_arrow.png") no-repeat #fff 319px 2px; */
+      /* dropdown_arrow.png is a 31x28 image */
+    /* } */
+    /* select {
+      border:0;
+      background:transparent;
+      height:32px;
+      border:1px solid #d8d8d8;
+      width:350px;
+    } */ 
+    
+    .table2 {
+      background-color: #971ed0;
+    }
+    label {
+      color: red;
+      margin-left: 7.2%;
+      font-weight: bold;
+    
+    }
+    
+    .submit {
+        background: #1478b2;
+        color: white;
+        border-style: outset;
+        border-color: #0066A2;
+        width: 100px;
+        font: bold15px arial,sans-serif;
+        text-shadow: none;
+      position: absolute;
+      left: -2.5%;
+    }
+    
+    select {
+      display: block;
+      width: 15em;
+      height: 2em;
+      line-height: 3;
+      overflow: hidden;
+      border-radius: .25em;
+      padding-bottom: 10px;
+      margin-left: 7.5%;
+    
+      background: #500bb7;
+      color: #fff;
+      outline: none;
+      cursor: pointer;
+      font-weight: bold;
+    
+    }
