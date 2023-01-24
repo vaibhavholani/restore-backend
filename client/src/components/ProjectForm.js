@@ -9,14 +9,29 @@ function ProjectForm() {
   const [clientSetting, setClientSetting] = useState("Inpatient");
   const [practiceArea, setPracticeArea] = useState("Mental Health");
   const [lifeSpan, clientLifeSpan] = useState("Neonatal")
-  const [demandtype, setDemandType] = useState("Physical")
+  // const [demandtype, setDemandType] = useState("Physical")
 
   
   const [dataCollected, setDataCollected] = useState(false)
   // const [valueData1, setData] = useState([])
   // const [valueData2, setData2] = useState([])
   const [valueData3, setData3] = useState([])
-  const [err, setErr] = useState(false)
+  const [valueData1, setData] = useState([])
+  const [valueData2, setData2] = useState([])
+
+
+  const [err1, setErr1] = useState(false)
+  const [err2, setErr2] = useState(false)
+  const [err3, setErr3] = useState(false)
+
+  // const [physicalChecked, setPhysicalChecked] = useState(false)
+  // const [psychoChecked, setPsychoChecked] = useState(false)
+  // const [coginitiveChecked, setCognitiveChecked] = useState(false)
+
+
+  const [physicalChecked, setPhysicalChecked] = useState(false)
+  const [cognitiveChecked, setCognitiveChecked] = useState(false)
+  const [psychoSocialChecked, setPsychoSocialChecked] = useState(false)
 
 
 
@@ -38,6 +53,25 @@ function ProjectForm() {
   const settingType = {'Mental Health': 'mentalhealth', 'Neurological': 'neuro'}
   const ageType ={'Neonatal':'neo', "Child":'child', "Senior": "senior", "Adolescent": "adole", "Adult":'adult'}
   const demandType ={'Physical':'physical', "PsychoSocial":'psycho', "Cognitive": "cog"}
+
+  async function handleCheckBox(e) {
+    // console.log(e.target.value)
+    if(e.target.value == 'Physical'){
+      setPhysicalChecked(!physicalChecked)
+      console.log(physicalChecked)
+
+    }
+
+    if(e.target.value == 'PsychoSocial'){
+      setPsychoSocialChecked(!psychoSocialChecked)
+      console.log(psychoSocialChecked)
+    }
+    if(e.target.value == 'Cognitive'){
+      setCognitiveChecked(!cognitiveChecked)
+      console.log(cognitiveChecked)
+
+    }
+  }
 
 
   function readData(lines, type) {
@@ -96,56 +130,63 @@ function ProjectForm() {
   async function sendSubmission(event)  {
 
     event.preventDefault()      
-    console.log(practiceSetting)
-    console.log(clientSetting)
-    console.log(lifeSpan)
-    console.log(practiceArea)
+    // console.log(practiceSetting)
+    // console.log(clientSetting)
+    // console.log(lifeSpan)
+    // console.log(practiceArea)
+    console.log(cognitiveChecked)
+    const filenameConstruct = abbreviation[practiceSetting].concat(settingType[practiceArea], patientType[clientSetting], ageType[lifeSpan])
+    try {
+      console.log('cognitive checked:' + cognitiveChecked)
 
-    const filenameConstruct = abbreviation[practiceSetting].concat(settingType[practiceArea], patientType[clientSetting], ageType[lifeSpan], demandType[demandtype])
-    console.log(filenameConstruct)
-//     try {
-//     const res = await fetch(`http://localhost:3000/pdmdata/${filenameConstruct}cog.csv`,{
-//       method: "GET",
-//       headers: {
-//         'content-type': 'text/csv;charset=UTF-8',
-//         //'Authorization': //in case you need authorisation
-//     }
-//   });
-  
-//   if (res.status === 200) 
-//   {
-
-//     const data = await res.text();
-//     const outputData = readData(data.split('\n'), 'cog')
-//     setData(outputData)
-
-//   }
-//   else if(res.status === 404){
-//     setErr(true)
-//   }
-
+      if(cognitiveChecked) {
       
-//   const res2 = await fetch(`http://localhost:3000/pdmdata/${filenameConstruct}physical.csv`,{
-//     method: "GET",
-//     headers: {
-//       'content-type': 'text/csv;charset=UTF-8',
-//       //'Authorization': //in case you need authorisation
-//   }
-// });
+    const res = await fetch(`https://restorelabbackend.herokuapp.com/pdmdata/${filenameConstruct}cog.csv`,{
+      method: "GET",
+      headers: {
+        'content-type': 'text/csv;charset=UTF-8',
+        //'Authorization': //in case you need authorisation
+    }
+  });
+  
+  if (res.status === 200) 
+  {
 
-// if (res2.status === 200) 
-// {
+    const data = await res.text();
+    const outputData = readData(data.split('\n'), 'cog')
+    setData(outputData)
 
-//   const data2 = await res2.text();
-//   const outputData2  = readData(data2.split('\n'), 'physical')
-//   setData2(outputData2)
+  }
+  else if(res.status === 404){
+    setErr1(true)
+  }
+      }
+      console.log('physical checked:' + physicalChecked)
+      if(physicalChecked){
+  const res2 = await fetch(`https://restorelabbackend.herokuapp.com/pdmdata/${filenameConstruct}physical.csv`,{
+    method: "GET",
+    headers: {
+      'content-type': 'text/csv;charset=UTF-8',
+      //'Authorization': //in case you need authorisation
+  }
+});
 
-// }
-// else if(res.status === 404){
-//   setErr(true)
-// }
-try {
-const res3 = await fetch(`https://restorelabbackend.herokuapp.com/pdmdata/${filenameConstruct}.csv`,{
+if (res2.status === 200) 
+{
+
+  const data2 = await res2.text();
+  const outputData2  = readData(data2.split('\n'), 'physical')
+  setData2(outputData2)
+
+}
+else if(res2.status === 404){
+  setErr2(true)
+}
+      }
+      console.log('psychoSocialChecked  checked:' + psychoSocialChecked)
+
+  if (psychoSocialChecked){      
+const res3 = await fetch(`https://restorelabbackend.herokuapp.com/pdmdata/${filenameConstruct}psycho.csv`,{
   method: "GET",
   headers: {
     'content-type': 'text/csv;charset=UTF-8',
@@ -158,27 +199,28 @@ if (res3.status === 200)
 
 const data3 = await res3.text();
 // const outputData3 = readData(data3.split('\n'), 'psycho')
-const outputData3 = readData(data3.split('\n'), demandType[demandtype])
-console.log(demandtype[demandType])
+const outputData3 = readData(data3.split('\n'), 'psycho')
 setData3(outputData3)
-setDataCollected(!dataCollected)
 
-console.log(dataCollected)
-setErr(false)
+setErr1(false)
 
 }
 else if(res3.status === 404){
-  setErr(true)
+  setErr3(true)
 }
     }
+    setDataCollected(!dataCollected)
+
+console.log(dataCollected)
+  }
     catch(error){
       console.log('ama')
-      setErr(true)
+      setErr1(true)
     }
 
   }
 
-  if(err){
+  if(err1){
     return(
       <div className='App'>
         <h1>No Data Available</h1>
@@ -191,35 +233,67 @@ else if(res3.status === 404){
     <div className="output1">
         <h1 className='mainheading'>Practicum Demands Measure: Occupational Therapy(OT)</h1>
 
-        {/* <h2 className='headings'>Cognitive Demands</h2>
-        <table className="table">
+
+      {cognitiveChecked && 
+      <div>
+              <h2 className='headings'>Cognitive Demands</h2>
+
+      <table className="table">
+      <thead>
+    <tr>
+      <th>Demands</th>
+      <th>Frequency</th>
+
+    </tr>
+    </thead>
       <tbody>
+     
       {
         valueData1.map((element) => (
           <tr>
           <td>{element[0]}</td>
+        
           <td>{element[1]}</td>
           </tr>
         ))
-      }
+        }
       </tbody>
     </table>
-      <h2 className='headings'>Physical Demands</h2>
-      <table className="table">
+    </div>
+  }
+  {physicalChecked &&
+      <div>
+              <h2 className='headings'>Physical Demands</h2>
+
+    <table className="table">
+      <thead>
+    <tr>
+      <th>Demands</th>
+      <th>Frequency</th>
+
+    </tr>
+    </thead>
       <tbody>
       {
         valueData2.map((element) => (
           <tr>
           <td>{element[0]}</td>
+        
           <td>{element[1]}</td>
           </tr>
-
         ))
       }
       </tbody>
-    </table> */}
-      <h2 className='headings'>{demandtype} Demands</h2>
-      <table className="table">
+  
+    </table>
+    </div>
+
+  }
+
+{psychoSocialChecked &&
+<div>
+<h2 className='headings'>Psycho Demands</h2>
+    <table className="table">
       <thead>
     <tr>
       <th>Demands</th>
@@ -236,10 +310,16 @@ else if(res3.status === 404){
           <td>{element[1]}</td>
           </tr>
         ))
+
       }
       </tbody>
     </table>
+    </div>
+  }
 
+  
+
+  
     <table className="table2">
       <thead>
     <tr>
@@ -287,7 +367,7 @@ else if(res3.status === 404){
     
       </tbody>
     </table>
-
+  
       </div>
     )
   }
@@ -303,13 +383,10 @@ else if(res3.status === 404){
   <select onChange={(e) => setPracticeSetting(e.target.value)} id="practicesetting" required>
     <option value="Acute care: General medicine" > Acute care: General medicine </ option> 
     <option value="Acute Care: Day hospital or clinic">Acute Care: Day hospital or clinic</ option>
-    <option value="Acute Care: Intensive care unit"> Acute Care: Intensive care unit </option>
-    <option value="Acute care: Rehabilitation unit"> Acute care: Rehabilitation unit </option>
     <option value="Free-standing mental health facility"> Free-standing mental health facility </option>
     <option value="Private industry or non-OT company"> Private industry or non-OT company </option>
     <option value="Private practice OT service"> Private practice OT service </option>
     <option value="Rehabilitation centre: complex continuing care or low tolerance long duration"> Rehabilitation centre: complex continuing care or low tolerance long duration </option>
-    <option value="Rehabilitation centre: Day hospital or clinic"> Rehabilitation centre: Day hospital or clinic </option>
     <option value="Rehabilitation centre: short-stay or medium stay"> Rehabilitation centre: short-stay or medium stay </option>
   </select>
 </div>
@@ -342,12 +419,42 @@ else if(res3.status === 404){
 </div>
 
 <div class="inputdiv">
-  <label for='demandtype'> Demand Type </label>
-  <select id="demandtype" onChange={(e) => setDemandType(e.target.value)} required>
-    <option value="Physical" >Physical </option>
-    <option value="PsychoSocial"> PsychoSocial </option>
-    <option value="Cognitive"> Cognitive </option>
-  </select>
+  <label >Select Demand Type </label>
+  <div>
+  <label className='check' for='physical'> Physical </label>
+
+  <input    
+              id = 'physical'
+              type="checkbox"
+              value="Physical"
+              onChange={(e)=>handleCheckBox(e)}
+              // checked={form.checked}
+            />
+  </div>
+  <div>
+  <label className='check' for='PsychoSocial'> PsychoSocial </label>
+
+  <input
+              id = 'PsychoSocial'
+              type="checkbox"
+              value="PsychoSocial"
+              onChange={handleCheckBox}
+              // checked={form.checked}
+            />
+
+  </div>
+  <div>
+  <label className='check' for='Cognitive'> Cognitive </label>
+
+  <input
+              id = 'Cognitive'
+              type="checkbox"
+              value="Cognitive"
+              onChange={handleCheckBox}
+              // checked={form.checked}
+            />
+
+  </div>
 </div>
 
 <input type="submit" class="submit" />
