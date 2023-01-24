@@ -292,7 +292,7 @@ console.log(dataCollected)
 
 {psychoSocialChecked &&
 <div>
-<h2 className='headings'>Psycho Demands</h2>
+<h2 className='headings'>PsychoSocial Demands</h2>
     <table className="table">
       <thead>
     <tr>
