@@ -144,7 +144,12 @@
       position: absolute;
       left: -2.5%;
     }
-    
+    .copyright {
+      position: fixed;
+      bottom: 3%;
+      left: 27%;
+
+    }
     select {
       display: block;
       width: 15em;

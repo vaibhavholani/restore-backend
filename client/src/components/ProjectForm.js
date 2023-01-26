@@ -2,6 +2,7 @@ import './projectform.css';
 import React, { useState } from 'react';
 // const fs = require("fs");
 // const { parse } = require("csv-parse");
+import TitleBar from './Titlebar';
 function ProjectForm() {
   
   const [practiceSetting, setPracticeSetting] = useState("Acute care: General medicine");
@@ -77,8 +78,9 @@ function ProjectForm() {
   function readData(lines, type) {
     const csvData = []
 
-    for (let i = 0; i < lines.length; i++) {
-      if ((i == 12 && (type === 'cog' || type == 'physical')) || (i == 2 && type == 'psycho') ){
+    for (let i = 0; i < lines.length - 1; i++) {
+      if ((i == 12 && (type === 'cog' || type == 'physical')) || (i == 2 && type == 'psycho') )
+      {
         lines[i] = lines[i].replace(',', '')
       }
       
@@ -93,36 +95,72 @@ function ProjectForm() {
 
 
   }
-  console.log(csvData)
-  let outputData = []
-  let max;
-  let max_index = 0
-  for (let i = 1; i < csvData.length - 2; i++) {
-      max = 0;
-      max_index = 1
+  // console.log(csvData)
+  // let outputData = []
+  // let max;
+  // let max_index = 0
+  // for (let i = 1; i < csvData.length - 2; i++) {
+  //     max = 0;
+  //     max_index = 1
 
+
+  //   for (let j = 1; j < csvData[i].length; j++ ){
+  //       if (csvData[i][j] !== ' '){
+          
+  //         if (max <= parseInt(csvData[i][j]))
+  //         { 
+  //           // console.log(csvData[i][j])
+  //           max = parseInt(csvData[i][j])
+  //           max_index = j
+
+  //         }
+  //       }
+  //   }
+
+  console.log(csvData)
+  const output_sum = []
+  let sum_value;
+  for (let i = 1; i < csvData.length - 1; i++) {
+        sum_value = 0
+    for (let j = 1; j < csvData[i].length; j++ ){
+        if (csvData[i][j] !== ' ')
+        {
+          sum_value = sum_value +  parseInt(csvData[i][j])
+                
+        }
+        
+
+    }
+    output_sum.push(sum_value)
+
+  }
+
+console.log(output_sum)
+  for (let i = 1; i < csvData.length - 1; i++) {
 
     for (let j = 1; j < csvData[i].length; j++ ){
-        if (csvData[i][j] !== ' '){
-          
-          if (max <= parseInt(csvData[i][j]))
-          { 
-            // console.log(csvData[i][j])
-            max = parseInt(csvData[i][j])
-            max_index = j
+        if (csvData[i][j] !== ' ')
+        {
+          csvData[i][j] = parseFloat((parseInt(csvData[i][j]) / output_sum[i - 1] * 100).toFixed(2)) + "%"
+                
+        }
 
-          }
+        else{
+          csvData[i][j] = 0
         }
     }
+
+
     
     // if((csvData[0][max_index] !== 'No' && csvData[0][max_index] !== 'Not Required')){
-      outputData.push([csvData[i][0],csvData[0][max_index]])
-    // }
-    console.log(outputData)
-}
+      // outputData.push([csvData[i][0],csvData[0][max_index]])
+    }
+    // console.log(outputData)
+
 // console.log(csvData)
-  console.log(outputData)
-  return outputData
+  csvData.pop()
+  console.log(csvData)
+  return csvData
 
 
   }
@@ -220,14 +258,14 @@ console.log(dataCollected)
 
   }
 
-  if(err1){
+  if(err1 || err2 || err3){
     return(
       <div className='App'>
         <h1>No Data Available</h1>
       </div>
     )
   }
-
+  let i = 0
   if(dataCollected){
     return(
     <div className="output1">
@@ -247,14 +285,23 @@ console.log(dataCollected)
     </tr>
     </thead>
       <tbody>
-     
+    
       {
         valueData1.map((element) => (
-          <tr>
-          <td>{element[0]}</td>
+          
+          <tr>{
+            element.map((subElement) => {
+              return(
+              // <td >{subElement}</td>
+              <td>{subElement}</td>
+            )})
+          }
+            </tr>
+          // <tr>
+          // <td>{element[0]}</td>
         
-          <td>{element[1]}</td>
-          </tr>
+          // <td>{element[1]}</td>
+          // </tr>
         ))
         }
       </tbody>
@@ -276,13 +323,22 @@ console.log(dataCollected)
       <tbody>
       {
         valueData2.map((element) => (
-          <tr>
-          <td>{element[0]}</td>
+          
+          <tr>{
+            element.map((subElement) => {
+              return(
+              // <td >{subElement}</td>
+              <td>{subElement}</td>
+            )})
+          }
+            </tr>
+          // <tr>
+          // <td>{element[0]}</td>
         
-          <td>{element[1]}</td>
-          </tr>
+          // <td>{element[1]}</td>
+          // </tr>
         ))
-      }
+        }
       </tbody>
   
     </table>
@@ -304,14 +360,22 @@ console.log(dataCollected)
       <tbody>
       {
         valueData3.map((element) => (
-          <tr>
-          <td>{element[0]}</td>
+          
+          <tr>{
+            element.map((subElement) => {
+              return(
+              // <td >{subElement}</td>
+              <td>{subElement}</td>
+            )})
+          }
+            </tr>
+          // <tr>
+          // <td>{element[0]}</td>
         
-          <td>{element[1]}</td>
-          </tr>
+          // <td>{element[1]}</td>
+          // </tr>
         ))
-
-      }
+        }
       </tbody>
     </table>
     </div>
@@ -364,7 +428,7 @@ console.log(dataCollected)
           <td>NA</td>
           </tr>
       
-    
+
       </tbody>
     </table>
   
@@ -456,11 +520,14 @@ console.log(dataCollected)
 
   </div>
 </div>
-
 <input type="submit" class="submit" />
       </form>
-
+      <div className='copyright'>
+      <h5>© Barker D, Stier J, Nowrouzi-Kia B. Department of Occupational Science & Occupational Therapy,
+Univesity of Toronto, 2020</h5>
+</div>
     </div>
+    
   );
 }
 }

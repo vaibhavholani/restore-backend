@@ -1,0 +1,26 @@
+.newImgDiv{
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+    align-items: center;
+    margin-left: 35%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(5, 5, 53);
+    color: white
+  }
+  
+
+  
+  .text {
+    width: 100%;
+    font-size: 140%;
+    right: 16.5%;
+    position: relative;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+  }
