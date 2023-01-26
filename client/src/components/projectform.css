@@ -147,7 +147,8 @@
     }
     .copyright {
       position: fixed;
-      bottom: 3%;
+      padding-top: 3%;
+      bottom: 2%;
       left: 21.5%;
 
     }
