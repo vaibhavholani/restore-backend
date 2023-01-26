@@ -1,9 +1,14 @@
 .newImgDiv{
-    height: 50%;
+    height: 25%;
     width: 50%;
     display: inline-block;
     align-items: center;
     margin-left: 35%;
+}
+
+.newImg {
+    max-height: 25%;
+    max-width: 25%;
 }
 
 .container {

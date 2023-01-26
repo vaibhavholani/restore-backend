@@ -10,7 +10,7 @@ export default function TitleBar() {
     <div class="container">
     <div className='newImgDiv'>
 
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/250px-Utoronto_coa.svg.png" className='newImg' height="100" />
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/250px-Utoronto_coa.svg.png" className='newImg'  />
 
           </div>
           <div className='text'>
