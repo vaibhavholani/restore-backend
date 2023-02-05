@@ -475,9 +475,9 @@ console.log(dataCollected)
   <select id="lifespan" onChange={(e) => clientLifeSpan(e.target.value)} required>
     <option value="Neonatal" >Neonatal </option>
     <option value="Child"> Child </option>
-    <option value="Adult"> Adult </option>
     <option value="Adolescent"> Adolescent </option>
-    <option value="Senior"> Senior </option>
+    <option value="Adult"> Adult </option>
+    <option value="Senior"> Older Adult </option>
 
   </select>
 </div>

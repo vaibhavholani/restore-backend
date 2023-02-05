@@ -7,17 +7,13 @@ export default function TitleBar2() {
 
   return (
     <>
-    <div class="container">
+    <div class="container2">
     <div className='newImgDiv'>
 
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/250px-Utoronto_coa.svg.png" className='newImg' height="100" />
+          <img src="https://tspace.library.utoronto.ca/retrieve/d2a89b4a-bf56-46f9-b5b2-5e9b81f6ca8b" className='newImg2'  />
 
           </div>
-          <div className='text'>
 
-          <h1>Univesity of Toronto</h1>
-        
-        </div>
 
     </div>
     </>

@@ -146,10 +146,9 @@
       left: -2.5%;
     }
     .copyright {
-      position: fixed;
-      padding-top: 3%;
-      bottom: 2%;
-      left: 21.5%;
+      position: relative;
+      padding-top: 5%;
+      left: 22%;
 
     }
     select {
