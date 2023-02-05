@@ -142,15 +142,15 @@
         width: 100px;
         font: bold15px arial,sans-serif;
         text-shadow: none;
-      position: absolute;
+      position: relative;
       left: -2.5%;
     }
-    .copyright {
+    /* .copyright {
       position: relative;
       padding-top: 5%;
       left: 22%;
 
-    }
+    } */
     select {
       display: block;
       width: 15em;
@@ -173,3 +173,9 @@
       color: rgb(15, 2, 2);
       align-content: center;
         }
+    .copyright h5 {
+      position: relative;
+      padding-top: 5%;
+      bottom: 10%;
+      left: 19%;
+    }
