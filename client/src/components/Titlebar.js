@@ -15,7 +15,7 @@ export default function TitleBar() {
           </div>
           <div className='text'>
 
-          <h1>Univesity of Toronto</h1>
+          <h1 className="uniHeading">UNIVERSITY OF TORONTO</h1>
         
         </div>
 

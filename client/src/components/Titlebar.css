@@ -23,15 +23,18 @@
   
   .text {
     width: 100%;
-    font-size: 140%;
+    font-size: 100%;
     right: 16.5%;
     position: relative;
     font-family:Georgia, 'Times New Roman', Times, serif;
-    font-style: italic;
   }
   .newImg2{
     max-width: 50%;
     max-height: 50%;
     position: relative;
     left: 10%;
+  }
+
+  .uniHeading {
+    font-family: serif;
   }
