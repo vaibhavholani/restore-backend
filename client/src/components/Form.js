@@ -27,7 +27,7 @@ export default function Form() {
         </select>
     </div>
   <div class="formContainer">
-      <form id="form" action={`${API_HOST}/api/${currentMode}`} method="POST" enctype="multipart/form-data">
+      <form id="form" action={`http://localhost:5000/api/${currentMode}`} method="POST" enctype="multipart/form-data">
       <div class="inputContainer">
           {(modeMapping[currentMode].structure).map(data => {
               
