@@ -51,8 +51,21 @@ function ProjectForm() {
   }
   
   const patientType = {'Inpatient':'inpatient', 'Outpatient':'outpatient'}
-  const settingType = {'Mental Health': 'mentalhealth', 'Neurological': 'neuro'}
-  const ageType ={'Neonatal':'neo', "Child":'child', "Senior": "senior", "Adolescent": "adole", "Adult":'adult'}
+  const settingType = 
+  {'Mental Health': 'mentalhealth', 
+    'Neurological': 'neuro',    
+    "Developmental": "dev", 
+    "Oncological": "onc",
+    "Other physical health": "physhealth", 
+    "Other diagnoses, concerns or no diagnosis": "diagnosis", 
+    "Organization-based Administrative": "admin"}
+  const ageType ={
+    'Neonatal':'neo', 
+    "Child":'child', 
+    "Senior": "senior", 
+    "Adolescent": "adole", 
+    "Adult":'adult', 
+                  }
   const demandType ={'Physical':'physical', "PsychoSocial":'psycho', "Cognitive": "cog"}
 
   async function handleCheckBox(e) {
@@ -467,6 +480,12 @@ console.log(dataCollected)
   <select id="practicearea" onChange={(e) => setPracticeArea(e.target.value)} required>
     <option value="Mental Health"> Mental Health </option>
     <option value="Neurological"> Neurological </option>
+    <option value="Developmental"> Developmental </option>
+    <option value="Oncological"> Oncological </option>
+    <option value="Other physical health"> Other physical health </option>
+    <option value="Other diagnoses, concerns or no diagnosis"> Other diagnoses, concerns or no diagnosis </option>
+    <option value="Organization-based Administrative"> Organization-based Administrative </option>
+
   </select>
 </div>
 
