@@ -29,6 +29,9 @@ export const projectDataStructure = [
     {label: "Button Text", formName: "buttonText", type: "text",required: false},
     {label: "Button Click Action", formName: "buttonType", type: "select", option_list: [{formName: "link",value: "Go to a link"}, {formName: "pdf",value: "Download a stored pdf"}], required: false},
     {label: "Button Link", formName: "buttonLink", type: "text",required: false},
+    {label: "Button Text 2", formName: "buttonText2", type: "text",required: false},
+    {label: "Button Click Action 2", formName: "buttonType2", type: "select", option_list: [{formName: "link",value: "Go to a link"}, {formName: "pdf",value: "Download a stored pdf"}], required: false},
+    {label: "Button Link 2", formName: "buttonLink2", type: "text",required: false},
     {label: "PDF file", formName: "buttonDownload", type: "file", required: false},
 ]
 
