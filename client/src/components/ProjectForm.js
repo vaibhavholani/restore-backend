@@ -171,11 +171,11 @@ function ProjectForm() {
 
   if (dataCollected) {
     return (
-      <div class="h-full bg-white flex flex-col justify-center rounded-lg">
-        <h1 class="text-4xl text-blue-700">Practicum Demands Measure: Occupational Therapy(OT)</h1>
+      <div>
+        {/* <h1 class="text-4xl text-blue-700">Practicum Demands Measure: Occupational Therapy(OT)</h1> */}
       {cognitiveChecked &&
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
           <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
             Cognitive Demands
             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Insert some beautiful text here!</p>
@@ -210,22 +210,25 @@ function ProjectForm() {
 {
   physicalChecked &&
   <div>
-    <h2 class='headings'>Physical Demands</h2>
-    <table class="table-fixed">
-    <thead>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      Physical Demands
+      <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Insert some beautiful text here!</p>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Demands</th>
-      <th>Frequency</th>
+      <th scope="col" class="px-6 py-3">Demands</th>
+      <th scope="col" class="px-6 py-3">Frequency</th>
     </tr>
     </thead>
     <tbody>
     {
       valueData2.map((element) => (
-        <tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           {
             element.map((subElement) => {
               return (
-              <td>{subElement}</td>
+              <td class="px-6 py-4">{subElement}</td>
             )})
           }
           </tr>
@@ -238,22 +241,24 @@ function ProjectForm() {
 {
   psychoSocialChecked &&
   <div>
-  <h2 class='headings'>PsychoSocial Demands</h2>
-    <table class="table-fixed">
-      <thead>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
+    <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      Psycho-Social Demands<p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Insert some beautiful text here!</p>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th>Demands</th>
-      <th>Frequency</th>
+      <th scope="col" class="px-6 py-3">Demands</th>
+      <th scope="col" class="px-6 py-3">Frequency</th>
     </tr>
     </thead>
       <tbody>
       {
         valueData3.map((element) => (
-          <tr>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             {
               element.map((subElement) => {
                 return (
-                <td>{subElement}</td>
+                <td class="px-6 py-4">{subElement}</td>
               )})
             }
           </tr>
@@ -263,24 +268,26 @@ function ProjectForm() {
     </table>
   </div>
 }
-  <table class="table-fixed">  
-  <thead>
-  <tr>
-    <th>List of all frequency options</th>
-  </tr>
-  </thead>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">  
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="px-6 py-3">List of all frequency options</th>
+    </tr>
+    </thead>
     <tbody>
-        <tr><td>No</td></tr>
-        <tr><td>Not Required</td></tr>
-        <tr><td>Required half of a day</td></tr>
-        <tr><td>Required less than half of a day</td></tr>
-        <tr><td>Required more than half of a day</td></tr>
-        <tr><td>Yes- Frequently</td></tr>
-        <tr><td>Yes- Infrequently</td></tr>
-        <tr><td>NA</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">No</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Not Required</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required less than half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required more than half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Yes- Frequently</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Yes- Infrequently</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">NA</td></tr>
     </tbody>
     </table>
   </div>
+</div>
   )} else {
       return (
         <div class="h-full bg-white flex flex-col justify-center">
@@ -301,31 +308,31 @@ function ProjectForm() {
           <div class="mb-4">
             <label class="block text-grey-darker text-sm font-bold mb-2" for='clientsetting'>Client Setting</label>
             <select class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" id="clientsetting" onChange={(e) => setClientSetting(e.target.value)}  required>
-              <option value="Inpatient"> Inpatient  </option>
-              <option value="Outpatient">Outpatient </option>
+              <option value="Inpatient">Inpatient</option>
+              <option value="Outpatient">Outpatient</option>
             </select>
             </div>
         <div class="mb-4">
           <label class="block text-grey-darker text-sm font-bold mb-2" for='practicearea'>Areas of Practice</label>
           <select class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" id="practicearea" onChange={(e) => setPracticeArea(e.target.value)} required>
-            <option value="Mental Health"> Mental Health </option>
-            <option value="Neurological"> Neurological </option>
-            <option value="Developmental"> Developmental </option>
-            <option value="Oncological"> Oncological </option>
-            <option value="Other physical health"> Other physical health </option>
-            <option value="Other diagnoses, concerns or no diagnosis"> Other diagnoses, concerns or no diagnosis </option>
-            <option value="Organization-based Administrative"> Organization-based Administrative </option>
-            <option value="Musculoskeletal or Orthopaedic"> Musculoskeletal or Orthopaedic </option>
+            <option value="Mental Health">Mental Health</option>
+            <option value="Neurological">Neurological</option>
+            <option value="Developmental">Developmental</option>
+            <option value="Oncological">Oncological</option>
+            <option value="Other physical health">Other physical health</option>
+            <option value="Other diagnoses, concerns or no diagnosis">Other diagnoses, concerns or no diagnosis</option>
+            <option value="Organization-based Administrative">Organization-based Administrative</option>
+            <option value="Musculoskeletal or Orthopaedic">Musculoskeletal or Orthopaedic</option>
           </select>
         </div>
       <div class="mb-4">
         <label class="block text-grey-darker text-sm font-bold mb-2" for='lifespan'>Client Lifespan</label>
         <select class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" id="lifespan" onChange={(e) => clientLifeSpan(e.target.value)} required>
-          <option value="Neonatal" >Neonatal </option>
-          <option value="Child"> Child </option>
-          <option value="Adolescent"> Adolescent </option>
-          <option value="Adult"> Adult </option>
-          <option value="Senior"> Older Adult </option>
+          <option value="Neonatal">Neonatal</option>
+          <option value="Child">Child</option>
+          <option value="Adolescent">Adolescent</option>
+          <option value="Adult">Adult</option>
+          <option value="Senior">Older Adult</option>
         </select>
       </div>
   <div class="mb-4">
