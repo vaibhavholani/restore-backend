@@ -142,10 +142,11 @@ export default function Edit() {
               if (!(ignore_list.includes(option) || option.endsWith("_id"))) {
                     const option_obj = (currDataStruture.find(opt => opt.formName === option))
                     if (option_obj == null) {
-                        console.log(currentMode)
-                        console.log(currDataStruture)
-                        console.log(data)
-                        console.log(option)
+                        console.log('this is fucked up')
+                        // console.log(currentMode)
+                        // console.log(currDataStruture)
+                        // console.log(data)
+                        // console.log(option)
                     }
                     const option_type = option_obj.type
                   return (

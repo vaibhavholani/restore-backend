@@ -3,7 +3,8 @@ const log = console.log;
 const path = require('path')
 
 const envHeader = "/api"
-const host = "https://restorelabbackend.herokuapp.com/"
+// const host = "https://restorelabbackend.herokuapp.com/"
+const host = "https://localhost:3000"
 
 // Express
 const express = require('express')
@@ -574,9 +575,8 @@ app.get("*", (req, res) => {
     // send index.html
     res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
-
 // Express server listening...
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     log(`Listening on port ${port}...`);
 });

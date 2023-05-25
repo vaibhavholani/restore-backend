@@ -13,12 +13,12 @@ const ProjectSchema = new mongoose.Schema({
     buttonType: {type: String, required: false, default: ""},
     buttonLink: {type: String, required: false, default: ""},
     buttonDownload: {type: 'Buffer', required: false,},
-    buttonText2: {type: String, required: false, default: ""},
-    buttonType2: {type: String, required: false, default: ""},
-    buttonLink2: {type: String, required: false, default: ""},
+    buttonText2: {type: String, required: false, default: "Add Button"},
+    buttonType2: {type: String, required: false, default: "Add Button"},
+    buttonLink2: {type: String, required: false, default: "Add Button"},
     buttonDownload: {type: 'Buffer', required: false,},
-    download_mimetype: {type: String, required: false}
-})
+    download_mimetype: {type: String, required: false} 
+}, { strict: false })
 
 const Project = mongoose.model('Project', ProjectSchema)
 module.exports = { Project }; 
