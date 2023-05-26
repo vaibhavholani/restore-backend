@@ -19,9 +19,6 @@ function ProjectForm() {
   const [cognitiveChecked, setCognitiveChecked] = useState(false)
   const [psychoSocialChecked, setPsychoSocialChecked] = useState(false)
 
-  // Set a state for a refresh button for the form
-  const [refresh, setRefresh] = useState(false)
-
   const abbreviation = {
     "Acute care: General medicine" : 'acgm',
     "Acute Care: Day hospital or clinic": "acdh",
