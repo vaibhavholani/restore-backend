@@ -19,6 +19,9 @@ function ProjectForm() {
   const [cognitiveChecked, setCognitiveChecked] = useState(false)
   const [psychoSocialChecked, setPsychoSocialChecked] = useState(false)
 
+  // Set a state for a refresh button for the form
+  const [refresh, setRefresh] = useState(false)
+
   const abbreviation = {
     "Acute care: General medicine" : 'acgm',
     "Acute Care: Day hospital or clinic": "acdh",
@@ -171,7 +174,7 @@ function ProjectForm() {
 
   if (dataCollected) {
     return (
-      <div>
+      <div class="m-6">
       {cognitiveChecked &&
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
@@ -265,7 +268,10 @@ function ProjectForm() {
 }
 
 <div class="mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">  
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
+  <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      Table of Content for Frequency<p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Table describing the definition of each Frequency</p>
+    </caption>
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" class="px-6 py-3">List of all frequency options</th>

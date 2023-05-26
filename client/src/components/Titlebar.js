@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 export default function TitleBar() {
+  const [refresh] = useState(false)
+
+  function setRefresh(value) {
+    window.location.reload(value);
+  }
 
     return (
       <div class="flex flex-row m-6 shadow-md sm:rounded-lg">
@@ -9,6 +14,9 @@ export default function TitleBar() {
         </div>
         <div class="w-2/3 p-6">
           <h1 class="text-4xl text-uoft-color">Practicum Demands Measure: Occupational Therapy(OT)</h1>
+        </div>
+        <div class="p-6">
+          <button class="bg-uoft-color hover:bg-uoft-color-100 text-white font-bold py-2 px-4 rounded cursor-grab" onClick={() => setRefresh(!refresh)}>Refresh</button>
         </div>
       </div>
 )}
