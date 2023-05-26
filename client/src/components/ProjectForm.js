@@ -191,11 +191,11 @@ function ProjectForm() {
           <tbody>
             {
               valueData1.map((element) => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"> 
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"> 
                 {
                   element.map((subElement) => {
                   return (
-                    <td class="px-6 py-4">{subElement}</td>
+                    <td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">{subElement}</td>
                     )})
                 }
               </tr>
@@ -226,7 +226,7 @@ function ProjectForm() {
           {
             element.map((subElement) => {
               return (
-              <td class="px-6 py-4">{subElement}</td>
+              <td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">{subElement}</td>
             )})
           }
           </tr>
@@ -256,7 +256,7 @@ function ProjectForm() {
             {
               element.map((subElement) => {
                 return (
-                <td class="px-6 py-4">{subElement}</td>
+                <td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">{subElement}</td>
               )})
             }
           </tr>
@@ -278,14 +278,14 @@ function ProjectForm() {
     </tr>
     </thead>
     <tbody>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">No</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Not Required</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required half of a day</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required less than half of a day</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Required more than half of a day</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Yes- Frequently</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">Yes- Infrequently</td></tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4">NA</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">No</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Not Required</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Required half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Required less than half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Required more than half of a day</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Yes- Frequently</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">Yes- Infrequently</td></tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="px-6 py-4 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">NA</td></tr>
     </tbody>
     </table>
   </div>
