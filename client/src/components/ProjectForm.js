@@ -172,7 +172,6 @@ function ProjectForm() {
   if (dataCollected) {
     return (
       <div>
-        {/* <h1 class="text-4xl text-blue-700">Practicum Demands Measure: Occupational Therapy(OT)</h1> */}
       {cognitiveChecked &&
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
@@ -183,11 +182,7 @@ function ProjectForm() {
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">Demands</th>
-                <th scope="col" class="px-6 py-3">Frequency</th>
-                <th scope="col" class="px-6 py-3">Frequency</th>
-                <th scope="col" class="px-6 py-3">Frequency</th>
-                <th scope="col" class="px-6 py-3">Frequency</th>
-                <th scope="col" class="px-6 py-3">Frequency</th>
+                <th scope="col" colspan="10" class="px-6 py-3">Frequency</th>
               </tr>
           </thead>
           <tbody>
@@ -209,7 +204,7 @@ function ProjectForm() {
 
 {
   physicalChecked &&
-  <div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
     <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
       Physical Demands
@@ -218,7 +213,7 @@ function ProjectForm() {
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" class="px-6 py-3">Demands</th>
-      <th scope="col" class="px-6 py-3">Frequency</th>
+      <th class="px-6 py-3" scope="col" colspan="10">Frequency</th>
     </tr>
     </thead>
     <tbody>
@@ -240,7 +235,7 @@ function ProjectForm() {
 
 {
   psychoSocialChecked &&
-  <div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">
     <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
       Psycho-Social Demands<p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Insert some beautiful text here!</p>
@@ -248,7 +243,7 @@ function ProjectForm() {
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" class="px-6 py-3">Demands</th>
-      <th scope="col" class="px-6 py-3">Frequency</th>
+      <th scope="col" colspan="10" class="px-6 py-3">Frequency</th>
     </tr>
     </thead>
       <tbody>
@@ -268,7 +263,8 @@ function ProjectForm() {
     </table>
   </div>
 }
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+<div class="mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 px-10">  
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
@@ -291,7 +287,6 @@ function ProjectForm() {
   )} else {
       return (
         <div class="h-full bg-white flex flex-col justify-center">
-          <h1 class="text-4xl text-blue-700">Practicum Demands Measure: Occupational Therapy(OT)</h1>
           <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={(e)=>{sendSubmission(e)}} >
               <div class="mb-4">
                   <label for="practicesetting" class='block text-grey-darker text-sm font-bold mb-2'>Practice Setting</label>
@@ -337,37 +332,42 @@ function ProjectForm() {
       </div>
   <div class="mb-4">
     <label class="block text-grey-darker text-sm font-bold mb-2">Select Demand Type</label>
-    <div class="flex flex-row">
-    <label class="block text-grey-darker text-sm font-bold mb-2" for='physical'>Physical</label>
-    <input
-      id='physical'
-      type="checkbox"
-      value="Physical"
-      onChange={(e)=>handleCheckBox(e)}
-    />
-    </div>
-  <div class="flex flex-row">
-  <label class="block text-grey-darker text-sm font-bold mb-2" for='PsychoSocial'>PsychoSocial</label>
-  <input
-    id = 'PsychoSocial'
-    type="checkbox"
-    value="PsychoSocial"
-    onChange={handleCheckBox}
-  />
+      <ul class="flex flex-col">
+        <li class="flex flex-row">
+        <label class="inline-block text-grey-darker text-sm font-bold" for='Physical'>Physical</label>
+          <input
+            id='Physical'
+            type="checkbox"
+            value="Physical"
+            class="ml-1"
+            onChange={(e)=>handleCheckBox(e)}
+          />
+        </li>
+        <li class="flex flex-row">
+          <label class="inline-block text-grey-darker text-sm font-bold" for='PsychoSocial'>PsychoSocial</label>
+          <input
+            id='PsychoSocial'
+            type="checkbox"
+            value="PsychoSocial"
+            class="ml-1"
+            onChange={handleCheckBox}
+          />
+        </li>
+        <li class="flex flex-row">
+          <label class="inline-block text-grey-darker text-sm font-bold" for='Cognitive'>Cognitive</label>
+          <input
+            id="Cognitive"
+            type="checkbox"
+            value="Cognitive"
+            class="ml-1"
+            onChange={handleCheckBox}
+          />
+        </li>
+      </ul> 
   </div>
-  <div class="flex flex-row">
-    <label class="block text-grey-darker text-sm font-bold mb-2" for='Cognitive'>Cognitive</label>
-    <input
-      id = 'Cognitive'
-      type="checkbox"
-      value="Cognitive"
-      onChange={handleCheckBox}
-    />
-  </div>
-</div>
-<input type="submit" class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-grab" />
+<input type="submit" class="bg-uoft-color hover:bg-uoft-color-100 text-white font-bold py-2 px-4 rounded cursor-grab" />
 </form>
-<div class='copyright'>
+<div class='ml-2'>
 <h5>© Barker D, Stier J, Nowrouzi-Kia B. Department of Occupational Science & Occupational Therapy, University of Toronto, 2020</h5>
 </div>
 </div>

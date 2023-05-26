@@ -7,7 +7,6 @@ import ProjectForm from './components/ProjectForm';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css';
 import TitleBar from './components/Titlebar';
-import TitleBar2 from './components/Titlebar2';
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
           <Route path={"/delete"} element={<Edit/>}/>
           <Route path={"/home"} element={<Home/>}/>
           <Route path={"/"} element={<LandingPage/>}/>
-          <Route path={"/pdminterface"} element={[<TitleBar/>, <TitleBar2/>, <ProjectForm/>]} />
+          <Route path={"/pdminterface"} element={[<TitleBar/>, <ProjectForm/>]} />
         </Routes>
       </BrowserRouter>
     </>

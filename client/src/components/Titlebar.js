@@ -1,26 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import './Titlebar.css'
+import React from 'react'
 
 export default function TitleBar() {
 
-
-
-  return (
-    <>
-    <div class="container">
-    <div className='newImgDiv'>
-
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Utoronto_coa.svg/250px-Utoronto_coa.svg.png" className='newImg'  />
-
-          </div>
-          <div className='text'>
-
-          <h1 className="uniHeading">UNIVERSITY OF TORONTO</h1>
-        
+    return (
+      <div class="flex flex-row m-6 shadow-md sm:rounded-lg">
+        <div class="w-1/3 p-6">
+          <img src="https://tspace.library.utoronto.ca/retrieve/d2a89b4a-bf56-46f9-b5b2-5e9b81f6ca8b"/>
         </div>
-
-    </div>
-    </>
-  )
-}
-
+        <div class="w-2/3 p-6">
+          <h1 class="text-4xl text-uoft-color">Practicum Demands Measure: Occupational Therapy(OT)</h1>
+        </div>
+      </div>
+)}
