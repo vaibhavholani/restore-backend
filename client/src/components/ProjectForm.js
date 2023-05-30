@@ -370,8 +370,8 @@ function ProjectForm() {
   </div>
 <input type="submit" class="bg-uoft-color hover:bg-uoft-color-100 text-white font-bold py-2 px-4 rounded cursor-grab" />
 </form>
-<div class='ml-2'>
-<h5>© Barker D, Stier J, Nowrouzi-Kia B. Department of Occupational Science & Occupational Therapy, University of Toronto, 2020</h5>
+<div class='text-uoft-color font-medium p-6'>
+© Barker D, Stier J, Nowrouzi-Kia B. Department of Occupational Science & Occupational Therapy, University of Toronto, 2020
 </div>
 </div>
 )}}
